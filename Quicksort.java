@@ -1,4 +1,12 @@
 
+/*
+ * 	
+ * Input : 			Set of Integers
+ * Output: 			Sorted Integers
+ * Description:		Sorts the set of integers using QuickSort in O(nlogn)
+ * 					 
+ * 		 
+ */
 public class Quicksort {
 
 	private int array[];
@@ -20,6 +28,7 @@ public class Quicksort {
 		int i=low;
 		int j=high;
 		
+		//Assume pivot element to be the middle element
 		int pivot=array[low+(high-low)/2];
 		while(i<=j){
 			while(array[i]<pivot)
@@ -33,10 +42,13 @@ public class Quicksort {
 			if(i<=j)
 			{
 				swap(i,j);
+				//move index to next position on both sides
 				i++;
 				j--;
 			}
 		}
+		
+		// calling quickSort() method recursively
 		if(low<j)
 		{
 			quicksort(low,j);
@@ -46,7 +58,7 @@ public class Quicksort {
 			quicksort(i,high);
 		}
 	}
-	
+
 	
 	public void swap(int i,int j)
 	{
