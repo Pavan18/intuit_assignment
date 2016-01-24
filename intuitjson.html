@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	
+<script>
+var data ={"itemList": {"items": [
+    {"id": "item1"},
+    {"id": "item2","label": "Item 2"},
+    {"id": "item3"},
+    {"id": "item4"},
+    {"id": "item5"},
+    {"id": "subItem1",
+        "subItems": [
+            {"id": "subItem1Item1","label": "SubItem 1"},
+            {"id": "subItem1Item2","label": "SubItem 2"},
+            {"id": "subItem1Item3","label": "SubItem 3"}
+            
+        ]
+    },
+    {"id": "item6"},
+    {"id": "item7","label": "Item 7"},
+    {"id": "subItem2",
+        "subItems": {"id": "item1","label": "SubItem 2 item1"}
+    }
+]}};
+
+
+
+ var searchstr=prompt("Enter the key element to be searched:");
+    if(searchstr==null || searchstr=="")
+    {
+     window.location.reload(true);
+    }
+    else{
+        JSON.stringify(toArray(data, 'data'));
+    }
+
+function toArray(obj, name) {
+    var result = [];
+    var passName="/itemList/items";
+   
+	
+    
+    var tempArray = [];
+    for (var prop in obj) {
+        var value = obj[prop];
+        if (typeof value === 'object') {
+		
+          if ($.isNumeric(prop)) {
+                passName = name + "[" + prop + "]";
+            } else {
+                passName = name + "['" + prop + "']";
+            }
+			
+            tempArray = toArray(value, passName);
+            $.each(tempArray, function (key, value) {
+
+                result.push(value);
+            });
+			if(value.id==searchstr)
+			{
+				alert("Path: "+ passName.replace(/data/g,"").replace(/\['/g,"/").replace(/'\]/g,"")+"/id");
+			}
+			if(value.label==searchstr)
+			{
+				alert("Path: "+passName.replace(/data/g,"").replace(/\['/g,"/").replace(/'\]/g,"")+"/label");
+			}
+           
+			
+        } else {
+            result.push(name + "['" + prop + "']");
+        }
+    }
+    return result;
+}
+
+
+</script>
+</head>
+<body >
+
+
+
+<p id="demo"></p>
+
+</body>
+</html>
