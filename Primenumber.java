@@ -1,10 +1,16 @@
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.ArrayList;
+/*
+ * 	
+ * Input : 			Number of prime numbers to be found and the numbers itself
+ * Output: 			Prime number associated with the input numbers
+ * Description:		Finds the prime number based on the input using Sieve of Eratosthenes in O(nlog(log(n)))	
+ * 					 
+ * 		 
+ */
+
+
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Primenumber {
 	public static void main(String[] args) {
